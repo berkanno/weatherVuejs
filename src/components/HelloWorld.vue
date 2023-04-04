@@ -1,5 +1,5 @@
 <template>
-  <v-card height="100%" width="100%">
+  <v-app>
     <v-img
       src="https://cdn.pixabay.com/photo/2016/03/27/07/32/clouds-1282314__480.jpg"
       cover
@@ -21,7 +21,13 @@
               ></v-text-field>
             </v-col>
             <v-col cols="12" class="text-center">
-              <v-btn width="100%" height="70" title="search" class="btnOpac">
+              <v-btn
+                width="100%"
+                height="70"
+                title="search"
+                class="btnOpac"
+                rounded
+              >
                 <v-row>
                   <v-col
                     class="text-overlined font-weight-medium text-blue-darken-4"
@@ -35,64 +41,106 @@
           </v-row>
         </v-col>
       </v-row>
-      <v-row>
+      <v-row v-if="getShowLocation">
         <v-col cols="12">
-          <v-container v-show="!getShowLocation">
+          <v-container >
             <v-row justify="center">
               <v-col cols="8">
                 <v-card height="100%" class="pa-5 btnOpac">
-                  <v-row>
-                    <v-col cols="12">
+                  <v-row justify="center">
+                    <v-col cols="4">
                       <v-img :src="getImage" width="100%"></v-img>
                     </v-col>
                   </v-row>
                   <v-row class="text-center">
-                    <v-col cols="6">
-                    
-                    </v-col>
                     <v-col
                       cols="12"
-                      class="text-overlined text-uppercase"
-                      style="letter-spacing: 15px"
+                      class=" text-uppercase text-purple-darken-4"
+                      style="letter-spacing: 20px"
                       >{{ getName }}</v-col
                     >
                     <v-col
-                      cols="3"
-                      class="text-overlined font-weight-black text-end"
+                      cols="6"
+                      sm="6"
+                      md="3"
+                      lg="3"
+                      xl="3"
+                      class="text-overline font-weight-black text-end text-red"
                       >Country:</v-col
                     >
-                    <v-col cols="3" class="text-start">{{ getCountry }}</v-col>
-                    
                     <v-col
-                      cols="3"
-                      class="text-overlined font-weight-black text-end"
+                      cols="6"
+                      sm="6"
+                      md="3"
+                      lg="3"
+                      xl="3"
+                      class="text-start text-overline text-indigo-darken-4"
+                      >{{ getCountry }}</v-col
+                    >
+
+                    <v-col
+                      cols="6"
+                      sm="6"
+                      md="3"
+                      lg="3"
+                      xl="3"
+                      class="text-overline font-weight-black text-end text-red"
                       >Local Time:</v-col
                     >
-                    <v-col cols="3" class="text-start">{{
-                      getLocalTime
-                    }}</v-col>
                     <v-col
-                      cols="3"
-                      class="text-overlined font-weight-black text-end"
+                      cols="6"
+                      sm="6"
+                      md="3"
+                      lg="3"
+                      xl="3"
+                      class="text-start text-overline text-indigo-darken-4"
+                      >{{ getLocalTime }}</v-col
+                    >
+                    <v-col
+                      cols="6"
+                      sm="6"
+                      md="3"
+                      lg="3"
+                      xl="3"
+                      class="text-overline font-weight-black text-end text-red"
                       >Region:</v-col
                     >
-                    <v-col cols="3" class="text-start">{{ getRegion }}</v-col>
                     <v-col
-                      cols="3"
-                      class="text-overlined font-weight-black text-end"
+                      cols="6"
+                      sm="6"
+                      md="3"
+                      lg="3"
+                      xl="3"
+                      class="text-start text-overline text-indigo-darken-4"
+                      >{{ getRegion }}</v-col
+                    >
+                    <v-col
+                      cols="6"
+                      sm="6"
+                      md="3"
+                      lg="3"
+                      xl="3"
+                      class="text-overline font-weight-black text-end text-red"
                       >Cloud:</v-col
                     >
-                    <v-col cols="3" class="text-start">%{{ getCloud }}</v-col>
+                    <v-col
+                      cols="6"
+                      sm="6"
+                      md="3"
+                      lg="3"
+                      xl="3"
+                      class="text-start text-overline text-indigo-darken-4"
+                      >%{{ getCloud }}</v-col
+                    >
                   </v-row>
                 </v-card>
               </v-col>
             </v-row>
           </v-container>
         </v-col>
-        <v-col cols="8"></v-col>
       </v-row>
     </v-img>
-  </v-card>
+  </v-app>
 </template>
 
 <script lang="ts">
@@ -128,6 +176,7 @@ export default {
             this.getLocalTime = res.data.location.localtime;
             this.getImage = res.data.current.condition.icon;
             this.getCloud = res.data.current.cloud;
+            this.getShowLocation = true;
           }
         })
         .catch((e: any) => console.log("error"));
