@@ -4,6 +4,9 @@
       src="https://cdn.pixabay.com/photo/2016/03/27/07/32/clouds-1282314__480.jpg"
       cover
     >
+    
+
+    
       <v-row justify="center">
         <v-col cols="4" class="mt-10 pt-10">
           <v-row>
